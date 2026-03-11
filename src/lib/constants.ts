@@ -3,7 +3,7 @@ export const siteConfig = {
   initials: "SN",
   title: "Sahil Niranjan — Data Scientist & ML Engineer",
   description:
-    "MS Analytics @ Northeastern University. Former Data Analyst at Vivma Software supporting JPMorgan Chase & Goldman Sachs. Building predictive models, shipping ML pipelines, and exploring where data meets markets.",
+    "MS Analytics @ Northeastern University. Former Data Analyst at Vivma Software. Building predictive models, shipping ML pipelines, and exploring where data meets markets.",
   url: "https://sahilniranjan.dev",
   email: "niranjan.sa@northeastern.edu",
   phone: "857-424-6060",
@@ -23,7 +23,7 @@ export const stats = [
   { label: "YOE", value: 2.5, suffix: "+", prefix: "", decimals: 1 },
   { label: "Patent Granted", value: 1, suffix: "", prefix: "" },
   { label: "Published Researcher", value: 1, suffix: "", prefix: "" },
-  { label: "GPA", value: 3.83, suffix: "", prefix: "", decimals: 2 },
+  { label: "GPA", value: 3.81, suffix: "", prefix: "", decimals: 2 },
 ];
 
 export const experiences = [
@@ -34,12 +34,12 @@ export const experiences = [
     period: "Jan 2026 – Present",
     location: "Remote",
     description: [
-      "Developed widget analytics dashboard tracking user engagement metrics across 50K+ daily active users",
-      "Built shared whiteboard feature with real-time collaboration using WebSocket architecture",
-      "Implemented health monitoring system with anomaly detection for predictive maintenance",
-      "Engineered push notification pipeline with ML-driven personalization increasing engagement by 35%",
+      "Built RAG pipelines with LangChain & OpenAI API, achieving 83.7% F1-score for context-aware responses",
+      "Engineered ETL workflows processing 5,000+ records daily using Python, SQL, and Airflow",
+      "Developed LLM-powered analytics dashboards serving 59+ users with real-time decision insights",
+      "Deployed ML microservices on AWS with Docker, reducing inference latency by 40%",
     ],
-    tech: ["Python", "TensorFlow", "FastAPI", "WebSocket", "Docker"],
+    tech: ["Python", "LangChain", "OpenAI API", "AWS", "Docker", "Airflow", "SQL"],
   },
   {
     id: 2,
@@ -61,12 +61,12 @@ export const experiences = [
     period: "Jan 2022 – Aug 2024",
     location: "India",
     description: [
-      "Supported JPMorgan Chase & Goldman Sachs with predictive analytics models achieving 94-97% accuracy",
-      "Processed and analyzed 1.5M+ records/month for financial data pipelines",
-      "Built end-to-end ML models for risk assessment and client behavior prediction",
-      "Automated ETL workflows reducing manual processing time by 60%",
+      "Improved predictive model precision by 31% using XGBoost and LightGBM ensemble methods",
+      "Processed and analyzed 1.5M+ records monthly through automated Spark and SQL pipelines",
+      "Reduced data discrepancies by 38% via automated reconciliation workflows in Python",
+      "Delivered analytics insights contributing to $850K+ in operational cost savings",
     ],
-    tech: ["Python", "SQL", "Spark", "AWS", "Tableau", "XGBoost"],
+    tech: ["Python", "SQL", "Spark", "AWS", "Tableau", "XGBoost", "LightGBM"],
   },
 ];
 
@@ -78,8 +78,8 @@ export const projects = [
     description:
       "Built a high-performance ML inference engine for cryptocurrency order-book mid-price prediction. Achieved sub-millisecond inference with C++ optimization, processing real-time Level 2 order book data. Model trained on 10M+ tick-level observations with feature engineering for microstructure signals.",
     tags: ["Python", "C++", "ML", "Crypto", "Low-Latency"],
-    github: "https://github.com/sahilniranjan",
-    live: "",
+    github: "https://github.com/sahilniranjan/lob-latency-project",
+    live: "https://lob-latency.streamlit.app/",
     highlight: "<0.7ms p99 latency",
     featured: true,
   },
@@ -90,8 +90,8 @@ export const projects = [
     description:
       "Designed a full-stack analytics platform combining XGBoost classification with K-Means clustering to segment and predict customer behavior. Achieved 97% prediction accuracy on churn detection. Deployed via Streamlit with interactive visualizations for business stakeholders.",
     tags: ["Python", "XGBoost", "K-Means", "Streamlit", "ML"],
-    github: "https://github.com/sahilniranjan",
-    live: "",
+    github: "https://github.com/sahilniranjan/Customer-Behavior-Analytics-Web-App",
+    live: "https://customer-behavior-analytics-web-app-deployed-bttwhavm4abrpzsie.streamlit.app/",
     highlight: "97% accuracy",
     featured: true,
   },
@@ -167,13 +167,29 @@ export const education = [
     degree: "MS in Analytics",
     school: "Northeastern University",
     location: "Boston, MA",
-    gpa: "3.83",
+    gpa: "3.81",
     period: "Expected June 2026",
-    achievements: [
-      "Patent Holder (India Patent 202211030731)",
-      "Published Researcher — IJEAST Vol. 6 No. 7",
-      "Hackathon Winner",
-      "University Basketball & Cricket Teams",
+    achievements: [],
+    coursework: [
+      { name: "Probability Theory and Introductory Statistics", grade: "A", inProgress: false },
+      { name: "Collecting, Storing and Retrieving Data", grade: "A-", inProgress: false },
+      { name: "Supervised Machine Learning", grade: "A", inProgress: false },
+      { name: "Unsupervised Machine Learning", grade: "A-", inProgress: false },
+      { name: "Introduction to Data Management and Processing", grade: "A-", inProgress: false },
+      { name: "Data Science Engineering Methods", grade: "A", inProgress: false },
+      { name: "Computation and Visualization", grade: "A-", inProgress: false },
+      { name: "Intermediate Analytics", grade: "A-", inProgress: false },
+      { name: "Financial Analytics", grade: "B+", inProgress: false },
+      { name: "Data Mining", grade: "A-", inProgress: false },
+      { name: "Deterministic Operations Research", grade: "A", inProgress: false },
+      { name: "Experimentation and Causal Inference", grade: "A-", inProgress: false },
+      { name: "Natural Language Processing", grade: "A", inProgress: false },
+      { name: "Generative Artificial Intelligence", grade: "A-", inProgress: false },
+      { name: "Data Visualization", grade: "A", inProgress: false },
+      { name: "Deep Learning", grade: "A", inProgress: false },
+      { name: "Big Data and Spark", grade: "B+", inProgress: false },
+      { name: "Data Architecture", grade: null, inProgress: true },
+      { name: "Marketing Analytics", grade: null, inProgress: true },
     ],
   },
   {
@@ -183,9 +199,16 @@ export const education = [
     gpa: "",
     period: "2018 – 2022",
     achievements: [
-      "Filed patent during undergraduate research",
-      "Led technical team in multiple hackathons",
+      {
+        text: "Patent Holder — India Patent 202211030731",
+        url: "https://drive.google.com/drive/folders/1W032h3Su-seW4cDe0DOIbOAbbDqL8xL4?usp=sharing",
+      },
+      {
+        text: "Published Researcher — IJEAST Vol. 6 No. 7",
+        url: "https://www.ijeast.com/search.php?search=emoTIONAL+RECOGNITION+USING+FACIAL+EXPRESSIONS+AND+SPEECH+ANALYSIS",
+      },
     ],
+    coursework: [],
   },
 ];
 

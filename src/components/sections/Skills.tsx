@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import SectionHeading, { AnimateIn } from "@/components/ui/SectionHeading";
 import { skillCategories } from "@/lib/constants";
 
-const SkillScene = dynamic(() => import("@/components/3d/SkillScene"), {
+const PoolScene = dynamic(() => import("@/components/3d/PoolScene"), {
   ssr: false,
   loading: () => (
     <div className="w-full h-[500px] md:h-[600px] flex items-center justify-center">
@@ -20,7 +20,7 @@ export default function Skills() {
         Skills
       </SectionHeading>
 
-      <SkillScene />
+      <PoolScene />
 
       <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillCategories.map((category, i) => (

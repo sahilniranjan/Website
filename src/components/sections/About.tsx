@@ -19,13 +19,13 @@ export default function About() {
               <span className="text-electric-blue font-medium">
                 Northeastern University
               </span>{" "}
-              (3.83 GPA, June 2026). Former Data Analyst at{" "}
+              (3.81 GPA, June 2026). Former Data Analyst at{" "}
               <span className="text-neon-purple font-medium">
                 Vivma Software
-              </span>{" "}
-              supporting{" "}
+              </span>
+              . Currently an AI/ML Engineer Intern at{" "}
               <span className="text-warm-white font-medium">
-                JPMorgan Chase & Goldman Sachs
+                Eudaimonic Inc.
               </span>
               .
             </p>
@@ -37,11 +37,7 @@ export default function About() {
               <span className="text-warm-white font-medium">Patent holder</span>
               .{" "}
               <span className="text-warm-white font-medium">
-                Hackathon winner
-              </span>
-              .{" "}
-              <span className="text-warm-white font-medium">
-                Basketball enthusiast
+                Published researcher
               </span>
               .
             </p>
@@ -51,9 +47,9 @@ export default function About() {
               I thrive on solving complex problems with data &mdash; whether
               it&apos;s building a sub-millisecond inference engine for crypto
               markets, deploying computer vision systems with 97% accuracy, or
-              crunching 1.5M records monthly for Wall Street clients. My work
-              sits at the intersection of engineering rigor and analytical
-              creativity.
+              crunching 1.5M records monthly through automated data pipelines.
+              My work sits at the intersection of engineering rigor and
+              analytical creativity.
             </p>
           </AnimateIn>
         </div>
