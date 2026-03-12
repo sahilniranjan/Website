@@ -8,7 +8,7 @@ const SkillGalaxy = lazy(() => import("./SkillGalaxy"));
 
 export default function GalaxyScene() {
   return (
-    <div className="relative w-full h-[550px] md:h-[650px] group">
+    <div className="relative w-full h-[380px] md:h-[450px] group">
       {/* Glow backdrop */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-electric-blue/[0.04] blur-[100px]" />
