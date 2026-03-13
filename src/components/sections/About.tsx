@@ -23,9 +23,9 @@ export default function About() {
               <span className="text-neon-purple font-medium">
                 Vivma Software
               </span>
-              . Currently an AI/ML Engineer Intern at{" "}
+              . Currently a Data Analyst Intern at{" "}
               <span className="text-warm-white font-medium">
-                Eudaimonic Inc.
+                DeepSpace (Eudaimonic Inc.)
               </span>
               .
             </p>
