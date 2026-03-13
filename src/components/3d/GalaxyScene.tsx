@@ -8,11 +8,12 @@ const SkillGalaxy = lazy(() => import("./SkillGalaxy"));
 
 export default function GalaxyScene() {
   return (
-    <div className="relative w-full h-[380px] md:h-[450px] group">
-      {/* Glow backdrop */}
+    <div className="relative w-full h-[420px] md:h-[500px] group">
+      {/* Glow backdrop - bigger and more vibrant */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-electric-blue/[0.04] blur-[100px]" />
-        <div className="absolute top-1/3 left-1/3 w-[300px] h-[300px] rounded-full bg-neon-purple/[0.04] blur-[80px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-electric-blue/[0.06] blur-[100px] animate-pulse" style={{ animationDuration: "4s" }} />
+        <div className="absolute top-1/3 left-1/3 w-[350px] h-[350px] rounded-full bg-neon-purple/[0.05] blur-[80px] animate-pulse" style={{ animationDuration: "6s" }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[250px] h-[250px] rounded-full bg-cyan-400/[0.03] blur-[60px] animate-pulse" style={{ animationDuration: "5s" }} />
       </div>
 
       <Canvas
