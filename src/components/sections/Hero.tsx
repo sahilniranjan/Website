@@ -31,7 +31,7 @@ export default function Hero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
           </span>
           <span className="text-sm text-warm-white/80 font-mono">
-            Open to Work — Summer 2026
+            Open to Work — Full Time from July 2026
           </span>
         </motion.div>
 
