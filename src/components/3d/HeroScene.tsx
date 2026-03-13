@@ -6,7 +6,6 @@ import { Preload } from "@react-three/drei";
 
 const ParticleField = lazy(() => import("./ParticleField"));
 const FloatingShape = lazy(() => import("./FloatingShapes"));
-const WorkingAvatar = lazy(() => import("./WorkingAvatar"));
 
 export default function HeroScene() {
   return (
@@ -26,15 +25,6 @@ export default function HeroScene() {
           <directionalLight position={[5, 5, 5]} intensity={0.5} />
           <pointLight position={[-5, -5, -5]} intensity={0.3} color="#A855F7" />
           <pointLight position={[5, 3, -3]} intensity={0.3} color="#00D4FF" />
-          <spotLight
-            position={[0, 5, -2]}
-            angle={0.45}
-            penumbra={0.8}
-            intensity={0.55}
-            color="#8ad9ff"
-          />
-
-          <WorkingAvatar />
 
           <FloatingShape
             position={[-4, 2, -2]}
