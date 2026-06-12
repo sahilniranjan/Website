@@ -1,15 +1,14 @@
 # Sahil Niranjan — Portfolio
 
-A highly interactive, visually stunning 3D animated developer portfolio website.
+A modern, highly interactive AI/ML engineer portfolio with a 3D neural-network hero, kinetic typography, and scroll-driven animations.
 
 ## Tech Stack
 
 - **Next.js 14** (App Router)
 - **TypeScript**
 - **Tailwind CSS**
-- **React Three Fiber** + **@react-three/drei** for 3D
+- **React Three Fiber** for the 3D neural-network field
 - **Framer Motion** for animations
-- **GSAP** for scroll-linked animations
 - **Lenis** for smooth scrolling
 
 ## Getting Started
@@ -37,29 +36,30 @@ NEXT_PUBLIC_FORMSPREE_ID=your_formspree_id
 
 ```
 src/
-├── app/              → Next.js App Router pages & layout
+├── app/              → Next.js App Router pages, layout & global styles
 ├── components/
-│   ├── 3d/           → Three.js canvas components
+│   ├── 3d/           → NeuralField (Three.js animated network)
 │   ├── sections/     → Hero, About, Experience, Projects, Skills, Education, Contact
-│   ├── ui/           → Shared UI components (TiltCard, Modal, CountUp, etc.)
+│   ├── ui/           → Magnetic, CountUp, RoleTypewriter, SectionHeading
 │   └── layout/       → Navbar, Footer, CustomCursor, SmoothScroll
 ├── lib/
-│   ├── constants.ts  → All data (projects, skills, experience)
+│   ├── constants.ts  → All content (experience, projects, skills, education)
+│   ├── useSpotlight.ts → Mouse-tracked card spotlight hook
 │   └── utils.ts      → Utility functions
 └── public/
-    └── assets/       → Images, resume PDF
+    └── assets/       → Resume PDF
 ```
 
 ## Features
 
-- Full-screen 3D hero with floating geometric shapes & particle field
-- Mouse-reactive parallax on 3D objects
-- Animated role typewriter
-- Scroll-triggered timeline for experience
-- 3D tilt project cards with glassmorphism design
-- 3D rotating skill sphere
+- 3D neural-network hero with mouse parallax (React Three Fiber)
+- Kinetic per-letter name reveal with gradient sheen
+- Floating pill navbar with active-section indicator & scroll progress bar
+- Bento-grid About section with animated stat counters
+- Scroll-driven experience timeline with animated progress line
+- Tilting project cards with mouse-tracked spotlight glow
+- Filterable skill chips with spring layout animations + infinite marquee
+- Expandable coursework accordion in Education
+- Magnetic buttons & custom dual-layer cursor
 - Contact form (Formspree)
-- Custom cursor with hover effects
-- Konami code easter egg (matrix rain)
-- Fully responsive & accessible (prefers-reduced-motion)
-- Dark theme with electric blue/neon purple accents
+- Fully responsive & accessible (prefers-reduced-motion respected)

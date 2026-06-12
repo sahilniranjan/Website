@@ -1,168 +1,113 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import SectionHeading from "@/components/ui/SectionHeading";
-import TiltCard from "@/components/ui/TiltCard";
-import Modal from "@/components/ui/Modal";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import SectionHeading, { AnimateIn } from "@/components/ui/SectionHeading";
+import { useSpotlight } from "@/lib/useSpotlight";
 import { projects } from "@/lib/constants";
-import { ExternalLink, Github, Sparkles } from "lucide-react";
+import { ExternalLink, Github, Zap } from "lucide-react";
 
-export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<
-    (typeof projects)[0] | null
-  >(null);
+function TiltProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[number];
+  index: number;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+  const spotlight = useSpotlight();
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    spotlight(e);
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ rx: -py * 6, ry: px * 6 });
+  };
 
   return (
-    <section id="projects" className="section-padding max-w-7xl mx-auto">
-      <SectionHeading subtitle="Things I've built that I'm proud of">
-        Projects
-      </SectionHeading>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-        {projects.map((project, i) => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            index={i}
-            onClick={() => setSelectedProject(project)}
-          />
-        ))}
-      </div>
-
-      <Modal
-        isOpen={!!selectedProject}
-        onClose={() => setSelectedProject(null)}
+    <AnimateIn delay={(index % 2) * 0.12}>
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMove}
+        onMouseLeave={() => setTilt({ rx: 0, ry: 0 })}
+        animate={{ rotateX: tilt.rx, rotateY: tilt.ry }}
+        transition={{ type: "spring", stiffness: 250, damping: 20 }}
+        style={{ transformStyle: "preserve-3d", perspective: 1000 }}
+        className="spotlight-card glass border-glow rounded-3xl p-8 md:p-9 h-full flex flex-col group"
       >
-        {selectedProject && (
-          <div className="max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon-purple/10 border border-neon-purple/30 text-neon-purple text-sm font-mono mb-6">
-              <Sparkles size={14} />
-              {selectedProject.highlight}
-            </div>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-warm-white mb-2">
-              {selectedProject.title}
-            </h2>
-            <p className="text-electric-blue font-medium text-lg mb-6">
-              {selectedProject.subtitle}
-            </p>
-            <p className="text-warm-white/70 text-base leading-relaxed mb-8">
-              {selectedProject.description}
-            </p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {selectedProject.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-sm font-mono px-4 py-1.5 rounded-full bg-electric-blue/10 text-electric-blue border border-electric-blue/20"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <div className="flex gap-4">
-              {selectedProject.github && (
-                <a
-                  href={selectedProject.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-warm-white/20 text-warm-white/80 text-sm font-medium hover:border-electric-blue hover:text-electric-blue transition-all"
-                >
-                  <Github size={16} />
-                  GitHub
-                </a>
-              )}
-              {selectedProject.live && (
-                <a
-                  href={selectedProject.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-electric-blue to-neon-purple text-white text-sm font-medium hover:shadow-lg hover:shadow-electric-blue/25 transition-all"
-                >
-                  <ExternalLink size={16} />
-                  Live Demo
-                </a>
-              )}
-            </div>
-          </div>
-        )}
-      </Modal>
-    </section>
+        <div className="flex items-start justify-between gap-4">
+          <span className="font-mono text-sm text-muted/60">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-gradient-to-r from-violet/15 to-cyan/15 border border-violet/30 text-cyan-bright">
+            <Zap size={11} />
+            {project.highlight}
+          </span>
+        </div>
+
+        <h3 className="font-heading text-2xl md:text-3xl font-bold mt-5 group-hover:text-gradient transition-all">
+          {project.title}
+        </h3>
+        <p className="font-mono text-xs text-violet-bright mt-1.5 uppercase tracking-wider">
+          {project.subtitle}
+        </p>
+
+        <p className="text-sm text-muted leading-relaxed mt-4 flex-1">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mt-6">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] border border-white/10 text-muted"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3 mt-7 pt-6 border-t border-white/5">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink transition-colors"
+          >
+            <Github size={16} /> Code
+          </a>
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted hover:text-cyan-bright transition-colors"
+            >
+              <ExternalLink size={16} /> Live
+            </a>
+          )}
+        </div>
+      </motion.div>
+    </AnimateIn>
   );
 }
 
-function ProjectCard({
-  project,
-  index,
-  onClick,
-}: {
-  project: (typeof projects)[0];
-  index: number;
-  onClick: () => void;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
+export default function Projects() {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      <TiltCard className="glass rounded-2xl overflow-hidden group cursor-pointer h-full">
-        <div onClick={onClick} className="p-6 md:p-8 h-full flex flex-col">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon-purple/10 border border-neon-purple/20 text-neon-purple text-xs font-mono mb-4 w-fit">
-            <Sparkles size={12} />
-            {project.highlight}
-          </div>
-          <h3 className="font-heading text-xl md:text-2xl font-bold text-warm-white mb-1 group-hover:text-gradient transition-all duration-300">
-            {project.title}
-          </h3>
-          <p className="text-electric-blue/80 text-sm font-medium mb-4">
-            {project.subtitle}
-          </p>
-          <p className="text-warm-white/50 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
-            {project.description}
-          </p>
-          <div className="flex flex-wrap gap-2 mb-5">
-            {project.tags.slice(0, 4).map((tag) => (
-              <span
-                key={tag}
-                className="text-xs font-mono px-2.5 py-1 rounded-full bg-warm-white/5 text-warm-white/60 border border-white/5"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          <div className="flex items-center gap-4 pt-2 border-t border-white/5">
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="text-warm-white/40 hover:text-electric-blue transition-colors"
-              >
-                <Github size={18} />
-              </a>
-            )}
-            {project.live && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="text-warm-white/40 hover:text-electric-blue transition-colors"
-              >
-                <ExternalLink size={18} />
-              </a>
-            )}
-            <span className="ml-auto text-xs text-warm-white/30 font-mono group-hover:text-electric-blue/50 transition-colors">
-              Click to expand &rarr;
-            </span>
-          </div>
-        </div>
-      </TiltCard>
-    </motion.div>
+    <section id="projects" className="section-padding max-w-7xl mx-auto">
+      <SectionHeading index="03" subtitle="Selected work">
+        Projects
+      </SectionHeading>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {projects.map((project, i) => (
+          <TiltProjectCard key={project.id} project={project} index={i} />
+        ))}
+      </div>
+    </section>
   );
 }

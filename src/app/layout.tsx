@@ -1,24 +1,45 @@
 import type { Metadata } from "next";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const grotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-grotesk",
+  display: "swap",
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Sahil Niranjan — Data Scientist & ML Engineer",
+  title: "Sahil Niranjan — AI/ML Engineer",
   description:
-    "MS Analytics @ Northeastern University. Former Data Analyst at Vivma Software supporting JPMorgan Chase & Goldman Sachs. Building predictive models, shipping ML pipelines, and exploring where data meets markets.",
+    "AI/ML Engineer. Built LLM multi-agent systems at BNY and ML anomaly detection for investment banking at Vivma Software. MS Analytics @ Northeastern University. Patent holder & published researcher.",
   keywords: [
     "Sahil Niranjan",
-    "Data Scientist",
+    "AI Engineer",
     "ML Engineer",
+    "GenAI",
+    "LLM",
     "Machine Learning",
-    "Data Analyst",
+    "MLOps",
     "Northeastern University",
     "Portfolio",
   ],
   authors: [{ name: "Sahil Niranjan" }],
   openGraph: {
-    title: "Sahil Niranjan — Data Scientist & ML Engineer",
+    title: "Sahil Niranjan — AI/ML Engineer",
     description:
-      "MS Analytics @ Northeastern University. Building predictive models, shipping ML pipelines, and exploring where data meets markets.",
+      "Building LLM multi-agent systems, RAG pipelines, and production ML. Patent holder & published researcher.",
     url: "https://sahilniranjan.dev",
     siteName: "Sahil Niranjan Portfolio",
     locale: "en_US",
@@ -26,9 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sahil Niranjan — Data Scientist & ML Engineer",
+    title: "Sahil Niranjan — AI/ML Engineer",
     description:
-      "MS Analytics @ Northeastern University. Building predictive models, shipping ML pipelines, and exploring where data meets markets.",
+      "Building LLM multi-agent systems, RAG pipelines, and production ML. Patent holder & published researcher.",
   },
   robots: {
     index: true,
@@ -42,10 +63,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html
+      lang="en"
+      className={`${inter.variable} ${grotesk.variable} ${jetbrains.variable}`}
+    >
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#0a0a0f" />
+        <meta name="theme-color" content="#050509" />
       </head>
       <body className="antialiased">{children}</body>
     </html>

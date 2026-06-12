@@ -1,159 +1,147 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading, { AnimateIn } from "@/components/ui/SectionHeading";
+import { useSpotlight } from "@/lib/useSpotlight";
 import { education } from "@/lib/constants";
-import { GraduationCap, Award, BookOpen, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
-
-const achievementIcons: Record<string, typeof Award> = {
-  Patent: Award,
-  Published: BookOpen,
-};
-
-function getIcon(text: string) {
-  for (const [key, Icon] of Object.entries(achievementIcons)) {
-    if (text.toLowerCase().includes(key.toLowerCase())) return Icon;
-  }
-  return Award;
-}
-
-function CourseworkSection({ coursework }: { coursework: typeof education[0]["coursework"] }) {
-  const [expanded, setExpanded] = useState(false);
-  if (!coursework || coursework.length === 0) return null;
-
-  const completed = coursework.filter((c) => !c.inProgress);
-  const inProgress = coursework.filter((c) => c.inProgress);
-  const visible = expanded ? completed : completed.slice(0, 6);
-
-  return (
-    <div className="mt-6">
-      <h4 className="text-sm font-mono text-warm-white/60 mb-3 uppercase tracking-wider">
-        Coursework
-      </h4>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-        {visible.map((course) => (
-          <div
-            key={course.name}
-            className="flex items-center justify-between gap-2 text-sm text-warm-white/55 px-3 py-1.5 rounded-lg hover:bg-white/[0.03] transition-colors"
-          >
-            <span className="truncate">{course.name}</span>
-            {course.grade && (
-              <span className="shrink-0 text-xs font-mono text-electric-blue/80">
-                {course.grade}
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
-      {completed.length > 6 && (
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="mt-2 flex items-center gap-1 text-xs font-mono text-neon-purple/70 hover:text-neon-purple transition-colors"
-        >
-          {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-          {expanded ? "Show less" : `Show all ${completed.length} courses`}
-        </button>
-      )}
-      {inProgress.length > 0 && (
-        <div className="mt-3">
-          <span className="text-xs font-mono text-warm-white/40 uppercase tracking-wider">
-            In Progress (Winter 2026)
-          </span>
-          <div className="mt-1.5 flex flex-wrap gap-2">
-            {inProgress.map((course) => (
-              <span
-                key={course.name}
-                className="text-xs font-mono px-3 py-1 rounded-full border border-neon-purple/20 text-neon-purple/70 bg-neon-purple/5"
-              >
-                {course.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+import {
+  GraduationCap,
+  Award,
+  BookOpen,
+  ExternalLink,
+  ChevronDown,
+} from "lucide-react";
 
 export default function Education() {
+  const [expanded, setExpanded] = useState<string | null>(null);
+  const spotlight = useSpotlight();
+
   return (
     <section id="education" className="section-padding max-w-7xl mx-auto">
-      <SectionHeading subtitle="Academic foundations and achievements">
+      <SectionHeading index="05" subtitle="Where I studied">
         Education
       </SectionHeading>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {education.map((edu, i) => (
-          <AnimateIn key={edu.school} delay={i * 0.15} direction="up">
-            <div className="glass rounded-2xl p-8 hover:glow-purple transition-shadow duration-300 h-full">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="p-3 rounded-xl bg-neon-purple/10 border border-neon-purple/20 shrink-0">
-                  <GraduationCap size={24} className="text-neon-purple" />
-                </div>
-                <div>
-                  <h3 className="font-heading text-xl md:text-2xl font-bold text-warm-white">
-                    {edu.degree}
-                  </h3>
-                  <p className="text-electric-blue font-medium">{edu.school}</p>
-                  <div className="flex items-center gap-3 mt-1 text-sm text-warm-white/50 font-mono">
-                    <span>{edu.location}</span>
-                    {edu.gpa && (
-                      <>
-                        <span className="text-warm-white/20">&bull;</span>
-                        <span>
-                          GPA:{" "}
-                          <span className="text-electric-blue">{edu.gpa}</span>
-                        </span>
-                      </>
-                    )}
-                  </div>
-                  <p className="text-warm-white/40 text-sm mt-1 font-mono">
-                    {edu.period}
-                  </p>
-                </div>
-              </div>
-
-              {edu.achievements.length > 0 && (
-                <div className="space-y-3 pl-4 border-l-2 border-neon-purple/20">
-                  {edu.achievements.map((achievement) => {
-                    const isLink = typeof achievement === "object" && achievement.url;
-                    const text = typeof achievement === "object" ? achievement.text : achievement;
-                    const url = typeof achievement === "object" ? achievement.url : null;
-                    const Icon = getIcon(text);
-                    return (
-                      <div
-                        key={text}
-                        className="flex items-center gap-3 text-warm-white/60 text-sm group"
-                      >
-                        <Icon
-                          size={16}
-                          className="text-neon-purple/60 group-hover:text-neon-purple transition-colors shrink-0"
-                        />
-                        {isLink && url ? (
-                          <a
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group-hover:text-electric-blue transition-colors flex items-center gap-1.5 underline underline-offset-2 decoration-electric-blue/30 hover:decoration-electric-blue"
-                          >
-                            {text}
-                            <ExternalLink size={12} className="shrink-0 opacity-50 group-hover:opacity-100" />
-                          </a>
-                        ) : (
-                          <span className="group-hover:text-warm-white/80 transition-colors">
-                            {text}
+      <div className="space-y-6">
+        {education.map((edu, i) => {
+          const isOpen = expanded === edu.school;
+          return (
+            <AnimateIn key={edu.school} delay={i * 0.1}>
+              <div
+                onMouseMove={spotlight}
+                className="spotlight-card glass border-glow rounded-3xl p-7 md:p-9"
+              >
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                  <div className="flex gap-4">
+                    <div className="p-3 rounded-2xl bg-gradient-to-br from-violet/20 to-cyan/10 border border-violet/25 h-fit">
+                      <GraduationCap size={22} className="text-violet-bright" />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-xl md:text-2xl font-bold">
+                        {edu.degree}
+                      </h3>
+                      <p className="text-gradient font-semibold mt-1">
+                        {edu.school}
+                      </p>
+                      <p className="font-mono text-xs text-muted mt-2">
+                        {edu.location}
+                        {edu.gpa && (
+                          <span className="ml-3 text-cyan-bright">
+                            GPA {edu.gpa}
                           </span>
                         )}
-                      </div>
-                    );
-                  })}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="font-mono text-sm text-muted shrink-0 md:text-right">
+                    {edu.period}
+                  </span>
                 </div>
-              )}
 
-              <CourseworkSection coursework={edu.coursework} />
-            </div>
-          </AnimateIn>
-        ))}
+                {edu.achievements.length > 0 && (
+                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {edu.achievements.map((ach) => (
+                      <a
+                        key={ach.text}
+                        href={ach.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between gap-3 px-4 py-3 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-violet/50 transition-colors group"
+                      >
+                        <span className="flex items-center gap-2.5 text-sm text-ink/85">
+                          {ach.text.startsWith("Patent") ? (
+                            <Award size={16} className="text-violet-bright shrink-0" />
+                          ) : (
+                            <BookOpen size={16} className="text-cyan-bright shrink-0" />
+                          )}
+                          {ach.text}
+                        </span>
+                        <ExternalLink
+                          size={14}
+                          className="text-muted opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                        />
+                      </a>
+                    ))}
+                  </div>
+                )}
+
+                {edu.coursework.length > 0 && (
+                  <div className="mt-6">
+                    <button
+                      onClick={() => setExpanded(isOpen ? null : edu.school)}
+                      className="inline-flex items-center gap-2 text-sm font-mono text-muted hover:text-ink transition-colors"
+                      aria-expanded={isOpen}
+                    >
+                      <motion.span
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="inline-flex"
+                      >
+                        <ChevronDown size={16} />
+                      </motion.span>
+                      {isOpen ? "Hide coursework" : `Show coursework (${edu.coursework.length})`}
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-5">
+                            {edu.coursework.map((course) => (
+                              <div
+                                key={course.name}
+                                className="flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/8 text-sm"
+                              >
+                                <span className="text-ink/75 leading-snug">
+                                  {course.name}
+                                </span>
+                                {course.inProgress ? (
+                                  <span className="font-mono text-[10px] uppercase tracking-wider text-mint shrink-0">
+                                    Now
+                                  </span>
+                                ) : (
+                                  <span className="font-mono text-xs text-cyan-bright shrink-0">
+                                    {course.grade}
+                                  </span>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
+              </div>
+            </AnimateIn>
+          );
+        })}
       </div>
     </section>
   );

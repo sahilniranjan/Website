@@ -9,37 +9,54 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0a0a0f",
-        "bg-secondary": "#111119",
-        "electric-blue": "#00D4FF",
-        "neon-purple": "#A855F7",
-        "warm-white": "#F5F5F5",
-        "card-bg": "rgba(17, 17, 25, 0.6)",
+        background: "#050509",
+        surface: "#0b0b13",
+        "surface-2": "#11111c",
+        violet: {
+          DEFAULT: "#8B5CF6",
+          bright: "#A78BFA",
+        },
+        cyan: {
+          DEFAULT: "#22D3EE",
+          bright: "#67E8F9",
+        },
+        mint: "#34D399",
+        ink: "#F4F4F6",
+        muted: "#9CA0AE",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        heading: ["Space Grotesk", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        heading: ["var(--font-grotesk)", "system-ui", "sans-serif"],
+        mono: ["var(--font-jetbrains)", "monospace"],
       },
       animation: {
-        float: "float 6s ease-in-out infinite",
-        "float-delayed": "float 6s ease-in-out 2s infinite",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "slide-up": "slideUp 0.5s ease-out",
-        "spin-slow": "spin 20s linear infinite",
+        marquee: "marquee 40s linear infinite",
+        "marquee-reverse": "marquee-reverse 46s linear infinite",
+        "spin-slow": "spin 24s linear infinite",
+        "pulse-soft": "pulse-soft 3s ease-in-out infinite",
+        shine: "shine 6s ease-in-out infinite",
+        float: "float 7s ease-in-out infinite",
       },
       keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+        "pulse-soft": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.45" },
+        },
+        shine: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.5" },
-        },
-        slideUp: {
-          "0%": { transform: "translateY(30px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
+          "50%": { transform: "translateY(-16px)" },
         },
       },
     },

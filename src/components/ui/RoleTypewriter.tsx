@@ -1,33 +1,37 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { roles } from "@/lib/constants";
 
 export default function RoleTypewriter() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [text, setText] = useState("");
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % roles.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
+    const current = roles[roleIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+    if (!deleting) {
+      if (text.length < current.length) {
+        timeout = setTimeout(() => setText(current.slice(0, text.length + 1)), 70);
+      } else {
+        timeout = setTimeout(() => setDeleting(true), 1800);
+      }
+    } else {
+      if (text.length > 0) {
+        timeout = setTimeout(() => setText(text.slice(0, -1)), 35);
+      } else {
+        setDeleting(false);
+        setRoleIndex((i) => (i + 1) % roles.length);
+      }
+    }
+    return () => clearTimeout(timeout);
+  }, [text, deleting, roleIndex]);
 
   return (
-    <span className="inline-block relative h-[1.3em] overflow-hidden align-bottom">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentIndex}
-          initial={{ y: 40, opacity: 0, rotateX: -90 }}
-          animate={{ y: 0, opacity: 1, rotateX: 0 }}
-          exit={{ y: -40, opacity: 0, rotateX: 90 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="inline-block text-gradient"
-        >
-          {roles[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
+    <span className="font-mono text-cyan-bright">
+      {text}
+      <span className="animate-pulse-soft text-violet-bright">▌</span>
     </span>
   );
 }

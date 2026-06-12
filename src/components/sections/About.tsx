@@ -2,106 +2,142 @@
 
 import SectionHeading, { AnimateIn } from "@/components/ui/SectionHeading";
 import CountUp from "@/components/ui/CountUp";
-import { stats } from "@/lib/constants";
+import { useSpotlight } from "@/lib/useSpotlight";
+import { stats, publications, siteConfig } from "@/lib/constants";
+import { Award, BookOpen, MapPin, Sparkles, ExternalLink } from "lucide-react";
 
 export default function About() {
+  const spotlight = useSpotlight();
+
   return (
     <section id="about" className="section-padding max-w-7xl mx-auto">
-      <SectionHeading subtitle="Building at the intersection of data, ML, and markets">
-        About Me
+      <SectionHeading index="01" subtitle="Who I am">
+        About
       </SectionHeading>
 
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-        <div className="lg:col-span-3 space-y-6">
-          <AnimateIn delay={0.1} direction="left">
-            <p className="text-warm-white/70 text-lg leading-relaxed">
-              MS Analytics @{" "}
-              <span className="text-electric-blue font-medium">
-                Northeastern University
-              </span>{" "}
-              (3.81 GPA, June 2026). Former Data Analyst at{" "}
-              <span className="text-neon-purple font-medium">
-                Vivma Software
-              </span>
-              . Currently a Data Analyst Intern at{" "}
-              <span className="text-warm-white font-medium">
-                DeepSpace (Eudaimonic Inc.)
-              </span>
-              .
-            </p>
-          </AnimateIn>
-          <AnimateIn delay={0.2} direction="left">
-            <p className="text-warm-white/70 text-lg leading-relaxed">
-              I build predictive models, ship ML pipelines, and love where data
-              meets markets.{" "}
-              <span className="text-warm-white font-medium">Patent holder</span>
-              .{" "}
-              <span className="text-warm-white font-medium">
-                Published researcher
-              </span>
-              .
-            </p>
-          </AnimateIn>
-          <AnimateIn delay={0.3} direction="left">
-            <p className="text-warm-white/50 text-base leading-relaxed">
-              I thrive on solving complex problems with data &mdash; whether
-              it&apos;s building a sub-millisecond inference engine for crypto
-              markets, deploying computer vision systems with 97% accuracy, or
-              crunching 1.5M records monthly through automated data pipelines.
-              My work sits at the intersection of engineering rigor and
-              analytical creativity.
-            </p>
-          </AnimateIn>
-        </div>
-
-        <div className="lg:col-span-2 flex justify-center">
-          <AnimateIn delay={0.4} direction="right">
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-              <div className="absolute inset-0 rounded-full border border-electric-blue/20 animate-spin-slow" />
-              <div
-                className="absolute inset-4 rounded-full border border-neon-purple/20 animate-spin-slow"
-                style={{
-                  animationDirection: "reverse",
-                  animationDuration: "25s",
-                }}
-              />
-              <div
-                className="absolute inset-8 rounded-full border border-electric-blue/10 animate-spin-slow"
-                style={{ animationDuration: "30s" }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl glass glow-blue flex items-center justify-center rotate-12">
-                  <span className="font-heading text-4xl md:text-5xl font-bold text-gradient -rotate-12">
-                    SN
-                  </span>
-                </div>
-              </div>
-              <div className="absolute top-4 right-4 w-3 h-3 rounded-full bg-electric-blue/50 animate-float" />
-              <div className="absolute bottom-8 left-2 w-2 h-2 rounded-full bg-neon-purple/50 animate-float-delayed" />
-              <div className="absolute top-1/2 -right-2 w-2 h-2 rounded-full bg-yellow-400/50 animate-float" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* Bio — large card */}
+        <AnimateIn className="md:col-span-2 md:row-span-2">
+          <div
+            onMouseMove={spotlight}
+            className="spotlight-card glass border-glow rounded-3xl p-8 md:p-10 h-full"
+          >
+            <div className="flex items-center gap-2 text-violet-bright font-mono text-xs uppercase tracking-widest mb-6">
+              <Sparkles size={14} /> AI/ML Engineer
             </div>
-          </AnimateIn>
-        </div>
-      </div>
+            <p className="text-lg md:text-xl leading-relaxed text-ink/90">
+              I build machine learning systems that ship — from{" "}
+              <span className="text-gradient font-semibold">
+                LLM multi-agent treasury verification at BNY
+              </span>{" "}
+              to anomaly-detection models guarding investment-banking
+              compliance pipelines at Vivma Software.
+            </p>
+            <p className="mt-5 text-muted leading-relaxed">
+              My work spans the full lifecycle: RAG pipelines over thousands of
+              policy documents, feature engineering on millions of financial
+              records, latency-optimized C++ inference, and MLOps pipelines
+              with MLflow, Docker, and CI/CD. I care about systems that are
+              measurable — precision lifted from 0.62 to 0.81, retrieval
+              latency cut 44%, $850K in engineering hours saved.
+            </p>
+            <p className="mt-5 text-muted leading-relaxed">
+              Currently finishing my MS in Analytics at Northeastern University
+              in Boston, with a granted patent and published research along the
+              way.
+            </p>
+          </div>
+        </AnimateIn>
 
-      <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
-        {stats.map((stat, i) => (
-          <AnimateIn key={stat.label} delay={0.1 * i} direction="up">
-            <div className="glass rounded-xl p-6 text-center hover:glow-blue transition-shadow duration-300">
-              <div className="font-heading text-3xl md:text-4xl font-bold text-gradient">
-                <CountUp
-                  end={stat.value}
-                  suffix={stat.suffix}
-                  prefix={stat.prefix}
-                  decimals={stat.decimals || 0}
-                />
-              </div>
-              <p className="mt-2 text-warm-white/50 text-sm font-mono">
-                {stat.label}
+        {/* Stats */}
+        <AnimateIn delay={0.1}>
+          <div
+            onMouseMove={spotlight}
+            className="spotlight-card glass border-glow rounded-3xl p-7 h-full"
+          >
+            <div className="grid grid-cols-2 gap-6">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="font-heading text-3xl md:text-4xl font-bold text-gradient">
+                    <CountUp
+                      value={stat.value}
+                      prefix={stat.prefix}
+                      suffix={stat.suffix}
+                      decimals={stat.decimals ?? 0}
+                    />
+                  </p>
+                  <p className="text-xs text-muted mt-1.5 leading-snug">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </AnimateIn>
+
+        {/* Location / status */}
+        <AnimateIn delay={0.2}>
+          <div
+            onMouseMove={spotlight}
+            className="spotlight-card glass border-glow rounded-3xl p-7 h-full flex flex-col justify-between gap-4"
+          >
+            <div className="flex items-center gap-2 text-muted font-mono text-xs uppercase tracking-widest">
+              <MapPin size={14} className="text-cyan-bright" /> Based in
+            </div>
+            <div>
+              <p className="font-heading text-2xl font-bold">Boston, MA</p>
+              <p className="text-sm text-muted mt-1.5 flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-mint opacity-60" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-mint" />
+                </span>
+                Open to AI/ML opportunities
               </p>
             </div>
+          </div>
+        </AnimateIn>
+
+        {/* Patent + Publication */}
+        {publications.map((pub, i) => (
+          <AnimateIn key={pub.type} delay={0.15 + i * 0.1} className="md:col-span-1">
+            <a
+              href={pub.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseMove={spotlight}
+              className="spotlight-card glass border-glow rounded-3xl p-7 h-full flex flex-col gap-3 group block"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-violet-bright">
+                  {pub.type === "Patent" ? <Award size={14} /> : <BookOpen size={14} />}
+                  {pub.type}
+                </div>
+                <ExternalLink
+                  size={14}
+                  className="text-muted opacity-0 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
+              <p className="font-medium leading-snug">{pub.title}</p>
+              <p className="text-xs font-mono text-muted">{pub.detail}</p>
+            </a>
           </AnimateIn>
         ))}
+
+        {/* Quick contact strip */}
+        <AnimateIn delay={0.3}>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            onMouseMove={spotlight}
+            className="spotlight-card rounded-3xl p-7 h-full flex flex-col justify-between gap-3 bg-gradient-to-br from-violet/20 to-cyan/10 border border-violet/30 hover:border-violet/60 transition-colors block group"
+          >
+            <p className="font-mono text-xs uppercase tracking-widest text-muted">
+              Get in touch
+            </p>
+            <p className="font-heading text-xl font-bold group-hover:text-gradient transition-all break-all">
+              {siteConfig.email}
+            </p>
+          </a>
+        </AnimateIn>
       </div>
     </section>
   );

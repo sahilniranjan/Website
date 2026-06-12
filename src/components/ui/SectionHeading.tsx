@@ -1,82 +1,70 @@
 "use client";
 
-import { ReactNode, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-
-interface SectionHeadingProps {
-  children: ReactNode;
-  subtitle?: string;
-}
-
-export default function SectionHeading({
-  children,
-  subtitle,
-}: SectionHeadingProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <div ref={ref} className="mb-16 md:mb-20">
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-        className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-warm-white"
-      >
-        {children}
-      </motion.h2>
-      {subtitle && (
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-4 text-warm-white/50 text-lg md:text-xl max-w-2xl"
-        >
-          {subtitle}
-        </motion.p>
-      )}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={inView ? { scaleX: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="mt-6 h-[2px] w-24 bg-gradient-to-r from-electric-blue to-neon-purple origin-left"
-      />
-    </div>
-  );
-}
-
-interface AnimateInProps {
-  children: ReactNode;
-  delay?: number;
-  direction?: "up" | "left" | "right" | "down";
-  className?: string;
-}
+import { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 export function AnimateIn({
   children,
   delay = 0,
   direction = "up",
-  className = "",
-}: AnimateInProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  const directionMap = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
+  className,
+}: {
+  children: ReactNode;
+  delay?: number;
+  direction?: "up" | "down" | "left" | "right" | "none";
+  className?: string;
+}) {
+  const offsets = {
+    up: { x: 0, y: 40 },
+    down: { x: 0, y: -40 },
     left: { x: -40, y: 0 },
     right: { x: 40, y: 0 },
+    none: { x: 0, y: 0 },
   };
+  const { x, y } = offsets[direction];
 
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, ...directionMap[direction] }}
-      animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
       className={className}
+      initial={{ opacity: 0, x, y }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
     >
       {children}
     </motion.div>
+  );
+}
+
+export default function SectionHeading({
+  children,
+  subtitle,
+  index,
+}: {
+  children: ReactNode;
+  subtitle?: string;
+  index?: string;
+}) {
+  return (
+    <div className="mb-16 md:mb-20">
+      <AnimateIn>
+        <div className="flex items-center gap-4 mb-4">
+          {index && (
+            <span className="font-mono text-sm text-violet-bright/70">
+              {index}
+            </span>
+          )}
+          <span className="h-px w-12 bg-gradient-to-r from-violet to-transparent" />
+          {subtitle && (
+            <p className="font-mono text-xs md:text-sm uppercase tracking-[0.2em] text-muted">
+              {subtitle}
+            </p>
+          )}
+        </div>
+        <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+          {children}
+        </h2>
+      </AnimateIn>
+    </div>
   );
 }
