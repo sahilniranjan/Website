@@ -110,10 +110,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.3 }}
           className="mt-6 max-w-2xl mx-auto text-sm md:text-base text-muted leading-relaxed"
         >
-          I build LLM multi-agent systems, RAG pipelines, and production ML —
-          most recently automating treasury verification at{" "}
-          <span className="text-ink font-medium">BNY</span>. Patent holder,
-          published researcher, MS Analytics @ Northeastern.
+          I build LLM retrieval systems and the evaluation harnesses that gate
+          them — most recently over 120k+ compliance documents at{" "}
+          <span className="text-ink font-medium">BNY</span>. Three and a half
+          years across financial services, healthcare, and higher education.
         </motion.p>
 
         {/* CTAs */}

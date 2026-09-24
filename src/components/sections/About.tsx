@@ -26,25 +26,29 @@ export default function About() {
               <Sparkles size={14} /> AI/ML Engineer
             </div>
             <p className="text-lg md:text-xl leading-relaxed text-ink/90">
-              I build machine learning systems that ship — from{" "}
+              Three and a half years across financial services, healthcare, and
+              higher education. I started on mainframe batch extracts, moved
+              into production ML for client risk workflows, and now build{" "}
               <span className="text-gradient font-semibold">
-                LLM multi-agent treasury verification at BNY
-              </span>{" "}
-              to anomaly-detection models guarding investment-banking
-              compliance pipelines at Vivma Software.
+                LLM retrieval systems and the evaluation harnesses that gate
+                them
+              </span>
+              .
             </p>
             <p className="mt-5 text-muted leading-relaxed">
-              My work spans the full lifecycle: RAG pipelines over thousands of
-              policy documents, feature engineering on millions of financial
-              records, latency-optimized C++ inference, and MLOps pipelines
-              with MLflow, Docker, and CI/CD. I care about systems that are
-              measurable — precision lifted from 0.62 to 0.81, retrieval
-              latency cut 44%, $850K in engineering hours saved.
+              Same question every time — where does it fail, how is it
+              measured, and which cases still need a person. That has meant
+              scoring retrieval configurations on context relevancy,
+              faithfulness, and answer relevancy before anything ships; routing
+              low-confidence output to human review inside a regulated
+              workflow; and rebuilding evaluation around time-based validation
+              after catching temporal leakage that was inflating reported
+              performance.
             </p>
             <p className="mt-5 text-muted leading-relaxed">
               Currently finishing my MS in Analytics at Northeastern University
-              in Boston, with a granted patent and published research along the
-              way.
+              in Boston, with a published patent application and peer-reviewed
+              research along the way.
             </p>
           </div>
         </AnimateIn>

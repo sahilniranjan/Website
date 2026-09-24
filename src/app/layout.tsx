@@ -23,13 +23,15 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Sahil Niranjan — AI/ML Engineer",
   description:
-    "AI/ML Engineer. Built LLM multi-agent systems at BNY and ML anomaly detection for investment banking at Vivma Software. MS Analytics @ Northeastern University. Patent holder & published researcher.",
+    "AI/ML engineer building LLM retrieval systems and the evaluation harnesses that gate them. Three and a half years of production ML across financial services, healthcare, and higher education. MS Analytics @ Northeastern University.",
   keywords: [
     "Sahil Niranjan",
     "AI Engineer",
     "ML Engineer",
     "GenAI",
     "LLM",
+    "RAG",
+    "LLM Evaluation",
     "Machine Learning",
     "MLOps",
     "Northeastern University",
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sahil Niranjan — AI/ML Engineer",
     description:
-      "Building LLM multi-agent systems, RAG pipelines, and production ML. Patent holder & published researcher.",
+      "LLM retrieval systems, evaluation harnesses, and production ML across financial services, healthcare, and higher education.",
     url: "https://sahilniranjan.dev",
     siteName: "Sahil Niranjan Portfolio",
     locale: "en_US",
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sahil Niranjan — AI/ML Engineer",
     description:
-      "Building LLM multi-agent systems, RAG pipelines, and production ML. Patent holder & published researcher.",
+      "LLM retrieval systems, evaluation harnesses, and production ML across financial services, healthcare, and higher education.",
   },
   robots: {
     index: true,

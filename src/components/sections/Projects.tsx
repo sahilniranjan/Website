@@ -72,14 +72,16 @@ function TiltProjectCard({
         </div>
 
         <div className="flex items-center gap-3 mt-7 pt-6 border-t border-white/5">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink transition-colors"
-          >
-            <Github size={16} /> Code
-          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink transition-colors"
+            >
+              <Github size={16} /> Code
+            </a>
+          )}
           {project.live && (
             <a
               href={project.live}
