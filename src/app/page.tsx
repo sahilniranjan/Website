@@ -5,7 +5,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
+import CaseStudy from "@/components/sections/CaseStudy";
+import Approach from "@/components/sections/Approach";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
@@ -24,9 +25,10 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Experience />
+        <CaseStudy />
         <Projects />
+        <Approach />
+        <Experience />
         <Skills />
         <Education />
         <Contact />

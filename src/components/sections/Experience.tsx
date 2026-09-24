@@ -19,8 +19,8 @@ export default function Experience() {
 
   return (
     <section id="experience" className="section-padding max-w-7xl mx-auto relative">
-      <SectionHeading index="02" subtitle="Where I've worked">
-        Experience
+      <SectionHeading index="04" subtitle="Track record">
+        Four roles, three industries
       </SectionHeading>
 
       <div ref={timelineRef} className="relative">

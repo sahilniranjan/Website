@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading, { AnimateIn } from "@/components/ui/SectionHeading";
 import { useSpotlight } from "@/lib/useSpotlight";
-import { education } from "@/lib/constants";
+import { education, stats, publications } from "@/lib/constants";
+import CountUp from "@/components/ui/CountUp";
 import {
   GraduationCap,
   Award,
@@ -18,10 +19,35 @@ export default function Education() {
   const spotlight = useSpotlight();
 
   return (
-    <section id="education" className="section-padding max-w-7xl mx-auto">
-      <SectionHeading index="05" subtitle="Where I studied">
-        Education
+    <section id="background" className="section-padding max-w-7xl mx-auto">
+      <SectionHeading index="06" subtitle="Background">
+        Credentials
       </SectionHeading>
+
+      <AnimateIn>
+        <div
+          onMouseMove={spotlight}
+          className="spotlight-card glass border-glow rounded-3xl p-7 md:p-8 mb-6"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <p className="font-heading text-3xl md:text-4xl font-bold text-gradient">
+                  <CountUp
+                    value={stat.value}
+                    prefix={stat.prefix}
+                    suffix={stat.suffix}
+                    decimals={stat.decimals ?? 0}
+                  />
+                </p>
+                <p className="text-xs text-muted mt-1.5 leading-snug">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </AnimateIn>
 
       <div className="space-y-6">
         {education.map((edu, i) => {
@@ -142,6 +168,33 @@ export default function Education() {
             </AnimateIn>
           );
         })}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        {publications.map((pub, i) => (
+          <AnimateIn key={pub.type} delay={i * 0.1}>
+            <a
+              href={pub.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseMove={spotlight}
+              className="spotlight-card glass border-glow rounded-3xl p-7 h-full flex flex-col gap-3 group block"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-violet-bright">
+                  {pub.type === "Patent" ? <Award size={14} /> : <BookOpen size={14} />}
+                  {pub.type}
+                </div>
+                <ExternalLink
+                  size={14}
+                  className="text-muted opacity-0 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
+              <p className="font-medium leading-snug">{pub.title}</p>
+              <p className="text-xs font-mono text-muted">{pub.detail}</p>
+            </a>
+          </AnimateIn>
+        ))}
       </div>
     </section>
   );

@@ -44,8 +44,8 @@ export default function Skills() {
 
   return (
     <section id="skills" className="section-padding max-w-7xl mx-auto">
-      <SectionHeading index="04" subtitle="What I work with">
-        Skills
+      <SectionHeading index="05" subtitle="Toolkit">
+        What I reach for
       </SectionHeading>
 
       {/* Category filter */}

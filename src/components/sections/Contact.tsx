@@ -85,7 +85,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section-padding max-w-7xl mx-auto relative">
-      <SectionHeading index="06" subtitle="Let's build something great">
+      <SectionHeading index="07" subtitle="Open to AI/ML roles">
         Get in <span className="text-gradient">Touch</span>
       </SectionHeading>
 

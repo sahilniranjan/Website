@@ -116,6 +116,61 @@ export const experiences = [
   },
 ];
 
+export const caseStudy = {
+  eyebrow: "Bank of New York · Jan – Apr 2026",
+  kicker: "Case study",
+  title: "The eval harness that decided what shipped",
+  problem:
+    "A retrieval-augmented system was going into a regulated compliance workflow at a custodian bank, reading across 120k+ business-critical financial and compliance documents. Several retrieval configurations looked plausible. Nobody could say which one was actually better, and in that workflow a confident wrong answer is worse than no answer.",
+  approach: [
+    {
+      label: "Fixed the question set first",
+      body: "Scored every candidate configuration against the same set of questions, so the comparison measured retrieval and not the prompt of the day.",
+    },
+    {
+      label: "Scored three axes, not one",
+      body: "Context relevancy, faithfulness, and answer relevancy — a config that retrieves the right documents but paraphrases them loosely fails differently than one that retrieves the wrong documents confidently.",
+    },
+    {
+      label: "Reworked the search strategy",
+      body: "Rebuilt the retrieval path in Python on LangChain, LangGraph, embeddings, and vector search, then let the harness decide whether it was actually an improvement.",
+    },
+    {
+      label: "Mapped the failures, then routed them",
+      body: "Sat with the compliance and operations users to find which question types it handled poorly, and routed low-confidence outputs to human review instead of letting them through.",
+    },
+  ],
+  metrics: [
+    { value: "18%", label: "lower response latency" },
+    { value: "35%", label: "faster retrieval" },
+    { value: "120k+", label: "documents in scope" },
+  ],
+  outcome:
+    "The harness, not an opinion, settled which configuration reached production — and the failure analysis defined where a person still has to sign off.",
+  tech: ["LangChain", "LangGraph", "Embeddings", "Vector Search", "Python"],
+};
+
+export const principles = [
+  {
+    n: "01",
+    title: "Measure before shipping",
+    body: "An eval harness is not paperwork you write after the demo works. It is the thing that decides whether the demo was real.",
+    evidence: "BNY — scored every retrieval candidate on relevancy and faithfulness before one reached production.",
+  },
+  {
+    n: "02",
+    title: "Fail closed on ambiguity",
+    body: "In a regulated workflow, the system's job on an unclear case is to stop and say so, not to produce its best guess with a confident tone.",
+    evidence: "S.T.A.R. Toolbox — deterministic rules, every conclusion traceable, ambiguity halts the screen.",
+  },
+  {
+    n: "03",
+    title: "Distrust your own metrics",
+    body: "The most expensive bugs are the ones that make your numbers look better. Reported performance and production performance are different claims until you prove otherwise.",
+    evidence: "Wipro | Alight — caught temporal leakage from random splits that was inflating reported model performance, and rebuilt evaluation around time-based validation.",
+  },
+];
+
 export const projects = [
   {
     id: 1,
@@ -314,10 +369,10 @@ export const education = [
 ];
 
 export const navLinks = [
-  { label: "About", href: "#about" },
+  { label: "Case Study", href: "#case-study" },
+  { label: "Work", href: "#work" },
+  { label: "Approach", href: "#approach" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
+  { label: "Background", href: "#background" },
   { label: "Contact", href: "#contact" },
 ];

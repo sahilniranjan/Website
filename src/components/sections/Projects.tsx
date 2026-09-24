@@ -100,9 +100,9 @@ function TiltProjectCard({
 
 export default function Projects() {
   return (
-    <section id="projects" className="section-padding max-w-7xl mx-auto">
-      <SectionHeading index="03" subtitle="Selected work">
-        Projects
+    <section id="work" className="section-padding max-w-7xl mx-auto">
+      <SectionHeading index="02" subtitle="Selected work">
+        Things I built
       </SectionHeading>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

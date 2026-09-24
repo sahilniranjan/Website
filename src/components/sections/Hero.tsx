@@ -125,10 +125,10 @@ export default function Hero() {
         >
           <Magnetic>
             <a
-              href="#projects"
+              href="#work"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-violet to-cyan text-white font-medium hover:shadow-[0_0_40px_-8px_rgba(139,92,246,0.6)] transition-shadow duration-300"
             >
-              View My Work <ArrowDown size={16} />
+              Read the case study <ArrowDown size={16} />
             </a>
           </Magnetic>
           <Magnetic>
@@ -154,7 +154,7 @@ export default function Hero() {
 
       {/* Scroll hint */}
       <motion.a
-        href="#about"
+        href="#case-study"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 1 }}
